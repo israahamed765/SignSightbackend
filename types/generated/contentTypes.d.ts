@@ -594,6 +594,59 @@ export interface ApiContactContact extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiDictionaryDictionary extends Struct.CollectionTypeSchema {
+  collectionName: 'dictionaries';
+  info: {
+    displayName: 'Lessons';
+    pluralName: 'dictionaries';
+    singularName: 'dictionary';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.Enumeration<
+      [
+        '\u0627\u0644\u0639\u0627\u0626\u0644\u0629 \u0648\u0627\u0644\u0623\u0635\u062F\u0642\u0627\u0621',
+        '\u0627\u0644\u0648\u0642\u062A \u0648\u0627\u0644\u0637\u0642\u0633',
+        '\u0627\u0644\u0645\u0647\u0646 \u0648\u0627\u0644\u0639\u0645\u0644',
+        '\u0627\u0644\u0635\u062D\u0629 \u0648\u0627\u0644\u0637\u0628',
+        '\u0627\u0644\u0631\u064A\u0627\u0636\u0629 \u0648\u0627\u0644\u0646\u0634\u0627\u0637',
+        '\u0627\u0644\u0643\u0644\u0645\u0627\u062A \u0627\u0644\u0634\u0627\u0626\u0639\u0629',
+        '\u0627\u0644\u062D\u0631\u0648\u0641 \u0627\u0644\u0623\u0628\u062C\u062F\u064A\u0629',
+        '\u0627\u0644\u0623\u0631\u0642\u0627\u0645 \u0648\u0627\u0644\u0639\u062F',
+        '\u0627\u0644\u062A\u0633\u0648\u0642',
+        '\u0627\u0644\u0623\u0637\u0639\u0645\u0629 \u0648\u0627\u0644\u0645\u0634\u0631\u0648\u0628\u0627\u062A',
+        '\u0627\u0644\u0645\u0634\u0627\u0639\u0631 \u0648\u0627\u0644\u0623\u062D\u0627\u0633\u064A\u0633',
+        '\u0627\u0644\u0633\u0641\u0631 \u0648\u0627\u0644\u0633\u064A\u0627\u062D\u0629',
+        '\u0627\u0644\u0623\u0644\u0648\u0627\u0646',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    letter: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dictionary.dictionary'
+    > &
+      Schema.Attribute.Private;
+    Order: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    video: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -629,7 +682,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiLessonLesson extends Struct.CollectionTypeSchema {
   collectionName: 'lessons';
   info: {
-    displayName: 'lesson';
+    displayName: 'levels';
     pluralName: 'lessons';
     singularName: 'lesson';
   };
@@ -653,6 +706,76 @@ export interface ApiLessonLesson extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSignSign extends Struct.CollectionTypeSchema {
+  collectionName: 'signs';
+  info: {
+    displayName: 'Sign';
+    pluralName: 'signs';
+    singularName: 'sign';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Category: Schema.Attribute.Enumeration<
+      [
+        '\u062D\u0631\u0648\u0641',
+        '\u0643\u0644\u0645\u0627\u062A',
+        '\u0627\u0631\u0642\u0627\u0645',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Label: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::sign.sign'> &
+      Schema.Attribute.Private;
+    Media: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiUserProgressUserProgress
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'user_progresses';
+  info: {
+    displayName: 'User Progress';
+    pluralName: 'user-progresses';
+    singularName: 'user-progress';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    isCompleted: Schema.Attribute.Boolean;
+    lesson: Schema.Attribute.Relation<'oneToOne', 'api::dictionary.dictionary'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::user-progress.user-progress'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -1114,6 +1237,7 @@ export interface PluginUsersPermissionsUser
     draftAndPublish: false;
   };
   attributes: {
+    avatar: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1171,8 +1295,11 @@ declare module '@strapi/strapi' {
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::contact.contact': ApiContactContact;
+      'api::dictionary.dictionary': ApiDictionaryDictionary;
       'api::global.global': ApiGlobalGlobal;
       'api::lesson.lesson': ApiLessonLesson;
+      'api::sign.sign': ApiSignSign;
+      'api::user-progress.user-progress': ApiUserProgressUserProgress;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

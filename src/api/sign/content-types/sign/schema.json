@@ -1,25 +1,30 @@
 {
   "kind": "collectionType",
-  "collectionName": "lessons",
+  "collectionName": "signs",
   "info": {
-    "singularName": "lesson",
-    "pluralName": "lessons",
-    "displayName": "levels"
+    "singularName": "sign",
+    "pluralName": "signs",
+    "displayName": "Sign"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "Label": {
       "type": "string"
     },
-    "description": {
-      "type": "text"
+    "Category": {
+      "type": "enumeration",
+      "enum": [
+        "حروف",
+        "كلمات",
+        "ارقام"
+      ]
     },
-    "icon": {
+    "Media": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "allowedTypes": [
         "images",
         "files",

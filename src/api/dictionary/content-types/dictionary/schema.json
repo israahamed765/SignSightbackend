@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dictionaries",
+  "info": {
+    "singularName": "dictionary",
+    "pluralName": "dictionaries",
+    "displayName": "Lessons"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "letter": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "العائلة والأصدقاء",
+        "الوقت والطقس",
+        "المهن والعمل",
+        "الصحة والطب",
+        "الرياضة والنشاط",
+        "الكلمات الشائعة",
+        "الحروف الأبجدية",
+        "الأرقام والعد",
+        "التسوق",
+        "الأطعمة والمشروبات",
+        "المشاعر والأحاسيس",
+        "السفر والسياحة",
+        "الألوان"
+      ]
+    },
+    "description": {
+      "type": "text"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "video": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Order": {
+      "type": "integer"
+    }
+  }
+}
