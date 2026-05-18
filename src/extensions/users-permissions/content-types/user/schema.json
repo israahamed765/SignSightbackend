@@ -75,6 +75,9 @@
         "videos",
         "audios"
       ]
+    },
+    "completed_lessons": {
+      "type": "json"
     }
   }
 }
